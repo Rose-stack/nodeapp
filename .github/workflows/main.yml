@@ -57,5 +57,4 @@ jobs:
 
       - # kube config
         name: Update kube config
-        run: aws eks update-kubeconfig --name rose
-    
+        run: aws eks update-kubeconfig --name eks_test --region us-west-1  
