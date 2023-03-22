@@ -62,7 +62,7 @@ jobs:
 
       - # kube config
         name: Update kube config
-        run: aws eks update-kubeconfig --name eks_test --region us-west-1
+        run: aws eks --region us-west-1 update-kubeconfig --name eks_test
 
       - # Deploy to EKS
         name: Deploy to EKS
