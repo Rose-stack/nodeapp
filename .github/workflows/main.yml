@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_DEFAULT_REGION: us-east-1
+  AWS_DEFAULT_REGION: us-west-1
   IMAGE_REPO_NAME: my-app
   IMAGE_TAG: latest
   CLUSTER_NAME: my-eks-cluster
@@ -62,6 +62,15 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
+
+      # Check AWS version and configure profile
+      - name: Check AWS version
+        run: |
+          aws --version
+          aws configure set aws_access_key_id $ secrets.AWS_ACCESS_KEY_ID 
+          aws configure set aws_secret_access_key $secrets.AWS_SECRET_ACCESS_KEY
+          aws configure set region $AWS_DEFAULT_REGION
+          aws sts get-caller-identity
 
       - # kube config
         name: Update kube config
