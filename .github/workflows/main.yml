@@ -63,19 +63,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-1
 
-      # Check AWS version and configure profile
-      - name: Update deployment
-        uses: ianbelcher/eks-kubectl-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: us-west-1
-          cluster_name: eks_test
-
       - # kube config
         name: Update kube config
         run: aws eks update-kubeconfig --name eks_test --region us-west-1
     
+      - # kube config
+        name: Update user
+        run: kubectl create clusterrolebinding ops-user-cluster-admin-binding --clusterrole=cluster-admin --user=kennedy
+    
+  
       - # Deploy to EKS
         name: Deploy to EKS
         run: |
