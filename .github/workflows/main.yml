@@ -69,9 +69,13 @@ jobs:
         run: |
           kubectl apply -f k8s_deployment.yml
 
-      - # Verify deployment
+      - # Verify pods deployment
         name: Verify deployment
         run: kubectl get pods
-      - # Verify deployment
+      - # Verify svc
         name: Verify deployment
         run: kubectl get svc
+        
+      - # Verify nodes
+        name: Verify deployment
+        run: kubectl get nodes
