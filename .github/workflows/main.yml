@@ -67,7 +67,7 @@ jobs:
       - # Deploy to EKS
         name: Deploy to EKS
         run: |
-          kubectl apply -f k8s_deployment.yaml
+          kubectl apply -f k8s_deployment.yml
 
       - # Verify deployment
         name: Verify deployment
